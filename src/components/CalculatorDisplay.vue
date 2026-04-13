@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { NInput, NDrawer, NDrawerContent } from "naive-ui";
 import CalculatorButtonCountry from "./CalculatorButtonCountry.vue";
 import CurrenciesList from "./CurrenciesList.vue";
-import { CURRENCIES, type CurrencyInfo } from "../constants/currencies";
+import { type CurrencyInfo } from "../constants/currencies";
 
 const props = defineProps<{
   fromValue: string;
@@ -20,7 +20,7 @@ const emit = defineEmits<{
 }>();
 
 const active = ref(false);
-const placement = ref("bottom");
+const placement = ref<"top" | "bottom" | "left" | "right">("bottom");
 
 const pickingFor = ref<"from" | "to">("from");
 

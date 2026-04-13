@@ -3,14 +3,6 @@ import CalculatorButton from "./CalculatorButton.vue";
 
 const emit = defineEmits(["on-click"]);
 
-const buttons = [
-  ["AC", "procent", "delete", "divide"],
-  ["7", "8", "9", "multiply"],
-  ["4", "5", "6", "subtract"],
-  ["1", "2", "3", "add"],
-  ["0", "dot", "equals"],
-];
-
 const handleClick = (iconName: string) => {
   emit("on-click", iconName);
 };
