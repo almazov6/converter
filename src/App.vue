@@ -40,6 +40,11 @@ const convert = (val: string, direction: "from" | "to") => {
 watch(activeField, (newField, oldField) => {
   if (newField !== oldField) {
     rate.value = parseFloat((1 / rate.value).toFixed(4));
+
+    const currentVal = newField === "from" ? fromValue : toValue;
+    if (evaluate(currentVal.value) === 0) {
+      currentVal.value = "0";
+    }
   }
 });
 
@@ -112,7 +117,7 @@ const handleKeyClick = (key: string) => {
         </div>
         <n-input-number
           v-model:value="rate"
-          :precision="4"
+          :precision="3"
           :min="0"
           size="small"
           class="app__rate-input"

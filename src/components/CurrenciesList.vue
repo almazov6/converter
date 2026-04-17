@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { CURRENCIES, type CurrencyInfo } from "../constants/currencies";
+import { NInput } from "naive-ui";
+import { ref, computed } from "vue";
 
 const props = defineProps<{
   active: boolean;
@@ -9,6 +11,23 @@ const getFlagUrl = (flagName: string) => {
   return new URL(`../assets/icons/flags/${flagName}.png`, import.meta.url).href;
 };
 
+const search = ref('');
+
+const filteredCurrencies = computed(() => {
+  const normalizedSearch = search.value.trim().toLowerCase();
+
+  if (!normalizedSearch) {
+    return CURRENCIES;
+  }
+
+  return CURRENCIES.filter((currency) => {
+    return (
+      currency.name.toLowerCase().includes(normalizedSearch) ||
+      currency.code.toLowerCase().includes(normalizedSearch)
+    );
+  });
+});
+
 const emit = defineEmits<{
   (e: 'select', currency: CurrencyInfo): void;
 }>();
@@ -16,8 +35,11 @@ const emit = defineEmits<{
 
 <template>
   <div class="currencies-list">
+    <div class="currencies-list__header">
+      <n-input type="text" size="large" placeholder="Поиск" v-model:value="search" />
+    </div>
     <button
-      v-for="currency in CURRENCIES"
+      v-for="currency in filteredCurrencies"
       :key="currency.code"
       class="currencies-list__item"
       @click="emit('select', currency)"

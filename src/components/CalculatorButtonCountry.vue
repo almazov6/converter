@@ -29,7 +29,7 @@ const getFlagUrl = (flagName: string) => {
   gap: 8px;
   cursor: pointer;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 8px 0 0 8px;
   transition: background-color 0.2s ease;
 
   &:hover {

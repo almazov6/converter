@@ -108,11 +108,11 @@ const setActiveField = (field: "from" | "to") => {
     border-radius: 12px;
     padding: 4px 8px;
     transition: all 0.2s ease;
+    background-color: #f6fffa;
     cursor: text;
 
     &--active {
       border-color: #18a058; // Цвет темы Naive UI (зеленый)
-      background-color: #f6fffa;
     }
   }
 }
